@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25CDE62A285F2AC9003FB4C4 /* libkmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25CDE629285F2AC9003FB4C4 /* libkmod.a */; };
 		358914F425798FA5007A0B58 /* TrackpointDevice.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 358914F225798FA5007A0B58 /* TrackpointDevice.hpp */; };
 		358914F525798FA5007A0B58 /* TrackpointDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 358914F325798FA5007A0B58 /* TrackpointDevice.cpp */; };
 		7BBAB1FD22E3A2F800B2941A /* VoodooInput.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7BBAB1FC22E3A2F800B2941A /* VoodooInput.hpp */; };
@@ -15,10 +16,10 @@
 		7BBAB21822E3AD0E00B2941A /* VoodooInputSimulatorDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7BBAB21222E3AD0D00B2941A /* VoodooInputSimulatorDevice.cpp */; };
 		7BBAB21922E3AD0E00B2941A /* VoodooInputActuatorDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7BBAB21322E3AD0D00B2941A /* VoodooInputActuatorDevice.cpp */; };
 		7BBAB21B22E3AD0E00B2941A /* VoodooInputActuatorDevice.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7BBAB21522E3AD0E00B2941A /* VoodooInputActuatorDevice.hpp */; };
-		CE8DA19D2518354A008C44E8 /* libkmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8DA19C2518354A008C44E8 /* libkmod.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		25CDE629285F2AC9003FB4C4 /* libkmod.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkmod.a; path = ../../MacKernelSDK/Library/x86_64/libkmod.a; sourceTree = "<group>"; };
 		358914F225798FA5007A0B58 /* TrackpointDevice.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TrackpointDevice.hpp; sourceTree = "<group>"; };
 		358914F325798FA5007A0B58 /* TrackpointDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TrackpointDevice.cpp; sourceTree = "<group>"; };
 		7BBAB1F922E3A2F800B2941A /* VoodooInput.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoodooInput.kext; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,7 +30,6 @@
 		7BBAB21222E3AD0D00B2941A /* VoodooInputSimulatorDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VoodooInputSimulatorDevice.cpp; sourceTree = "<group>"; };
 		7BBAB21322E3AD0D00B2941A /* VoodooInputActuatorDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VoodooInputActuatorDevice.cpp; sourceTree = "<group>"; };
 		7BBAB21522E3AD0E00B2941A /* VoodooInputActuatorDevice.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VoodooInputActuatorDevice.hpp; sourceTree = "<group>"; };
-		CE8DA19C2518354A008C44E8 /* libkmod.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkmod.a; path = ../Lilu/MacKernelSDK/Library/x86_64/libkmod.a; sourceTree = "<group>"; };
 		CEC086452439FD3E00F5B701 /* VoodooInputTransducer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoodooInputTransducer.h; sourceTree = "<group>"; };
 		CEC086462439FD3E00F5B701 /* MultitouchHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultitouchHelpers.h; sourceTree = "<group>"; };
 		CEC086472439FD3E00F5B701 /* VoodooInputEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoodooInputEvent.h; sourceTree = "<group>"; };
@@ -44,7 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE8DA19D2518354A008C44E8 /* libkmod.a in Frameworks */,
+				25CDE62A285F2AC9003FB4C4 /* libkmod.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +106,7 @@
 		CE8DA19B2518354A008C44E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CE8DA19C2518354A008C44E8 /* libkmod.a */,
+				25CDE629285F2AC9003FB4C4 /* libkmod.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -158,7 +158,6 @@
 				7BBAB1F522E3A2F800B2941A /* Sources */,
 				7BBAB1F622E3A2F800B2941A /* Frameworks */,
 				CEC086492439FD5D00F5B701 /* Copy SDK */,
-				CEFB081C239659D000215B0B /* Archive */,
 			);
 			buildRules = (
 			);
@@ -220,24 +219,6 @@
 			shellPath = /bin/bash;
 			shellScript = "if [ \"${CONFIGURATION}\" == \"Debug\" ]; then\n    rm -rf \"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources\"\n    mkdir -p \"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources\"\n    cp -r \"${SRCROOT}/${PRODUCT_NAME}/VoodooInputMultitouch\" \"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/Contents/Resources\"\nfi\n\nexit 0\n";
 		};
-		CEFB081C239659D000215B0B /* Archive */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Archive;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd \"${TARGET_BUILD_DIR}\"\n\ndist=(\"$FULL_PRODUCT_NAME\")\nif [ -d \"$DWARF_DSYM_FILE_NAME\" ]; then dist+=(\"$DWARF_DSYM_FILE_NAME\"); fi\n\narchive=\"${PRODUCT_NAME}-${MODULE_VERSION}-$(echo $CONFIGURATION | tr /a-z/ /A-Z/).zip\"\nrm -rf *.zip\nzip -qry -FS \"${archive}\" \"${dist[@]}\"\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -262,7 +243,7 @@
 				ARCHS = x86_64;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -307,9 +288,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				KERNEL_EXTENSION_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
-				KERNEL_FRAMEWORK_HEADERS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				KERNEL_EXTENSION_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../MacKernelSDK/Headers";
+				KERNEL_FRAMEWORK_HEADERS = "$(PROJECT_DIR)/../../MacKernelSDK/Headers";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -324,7 +305,7 @@
 				ARCHS = x86_64;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -357,15 +338,16 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				KERNEL_EXTENSION_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
-				KERNEL_FRAMEWORK_HEADERS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				KERNEL_EXTENSION_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../MacKernelSDK/Headers";
+				KERNEL_FRAMEWORK_HEADERS = "$(PROJECT_DIR)/../../MacKernelSDK/Headers";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -378,6 +360,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "$(MODULE_VERSION)";
+				DEVELOPMENT_TEAM = K8RXBXZGN4;
 				INFOPLIST_FILE = VoodooInput/Info.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -397,6 +380,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "$(MODULE_VERSION)";
+				DEVELOPMENT_TEAM = K8RXBXZGN4;
 				INFOPLIST_FILE = VoodooInput/Info.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

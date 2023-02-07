@@ -14,9 +14,6 @@
     (AbsoluteTime_to_scalar(t1) -=                \
         AbsoluteTime_to_scalar(t2))
 
-#define kIOPMPowerOff                       0
-#define kIOPMNumberPowerStates     2
-
 enum {
     // transforms
     kIOFBRotateFlags                    = 0x0000000f,
@@ -29,11 +26,6 @@ enum {
     kIOFBRotate90                       = kIOFBSwapAxes | kIOFBInvertX,
     kIOFBRotate180                      = kIOFBInvertX  | kIOFBInvertY,
     kIOFBRotate270                      = kIOFBSwapAxes | kIOFBInvertY
-};
-
-static IOPMPowerState PMPowerStates[kIOPMNumberPowerStates] = {
-    {1, kIOPMPowerOff, kIOPMPowerOff, kIOPMPowerOff, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1, kIOPMPowerOn, kIOPMPowerOn, kIOPMPowerOn, 0, 0, 0, 0, 0, 0, 0, 0}
 };
 
 #endif

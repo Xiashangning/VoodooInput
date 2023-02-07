@@ -22,6 +22,10 @@
 #define EXPORT __attribute__((visibility("default")))
 #endif
 
+#ifndef PACKED
+#define PACKED __attribute__((__packed__))
+#endif
+
 #define MT2_MAX_X 8134
 #define MT2_MAX_Y 5206
 
@@ -62,7 +66,7 @@ enum TouchStates {
 |   |   UInt3   |   |     UInt4     |
 +---+-----------+---+---------------+
 */
-struct __attribute__((__packed__)) MAGIC_TRACKPAD_INPUT_REPORT_FINGER {
+struct PACKED MAGIC_TRACKPAD_INPUT_REPORT_FINGER {
     SInt16 X: 13;
     SInt16 Y: 13;
     UInt8 Finger: 3;
@@ -76,7 +80,7 @@ struct __attribute__((__packed__)) MAGIC_TRACKPAD_INPUT_REPORT_FINGER {
     UInt8 Angle: 3;
 };
 
-struct __attribute__((__packed__)) MAGIC_TRACKPAD_INPUT_REPORT {
+struct PACKED MAGIC_TRACKPAD_INPUT_REPORT {
     UInt8 ReportID;
     UInt8 Button;
     UInt8 Unused[5];
@@ -113,8 +117,6 @@ public:
     OSString* newProductString() const override;
     OSString* newSerialNumberString() const override;
     OSNumber* newLocationIDNumber() const override;
-
-    IOReturn setPowerState(unsigned long whichState, IOService* whatDevice) override;
 
     bool start(IOService* provider) override;
     void stop(IOService* provider) override;

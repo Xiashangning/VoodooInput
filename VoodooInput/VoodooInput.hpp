@@ -12,7 +12,6 @@
 
 class VoodooInputSimulatorDevice;
 class VoodooInputActuatorDevice;
-class TrackpointDevice;
 
 #ifndef EXPORT
 #define EXPORT __attribute__((visibility("default")))
@@ -25,7 +24,6 @@ class EXPORT VoodooInput : public IOService {
     
     VoodooInputSimulatorDevice* simulator;
     VoodooInputActuatorDevice* actuator;
-    TrackpointDevice* trackpoint;
     
     UInt8 transformKey;
     

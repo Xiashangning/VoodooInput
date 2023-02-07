@@ -30,6 +30,7 @@ struct TouchCoordinates {
     UInt32 y;
     UInt8 pressure;
     UInt8 width;
+    UInt8 height;
 };
 
 struct VoodooInputTransducer {

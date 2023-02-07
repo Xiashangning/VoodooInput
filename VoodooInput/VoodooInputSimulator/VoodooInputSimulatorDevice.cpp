@@ -236,10 +236,6 @@ bool VoodooInputSimulatorDevice::start(IOService* provider) {
         releaseResources();
         return false;
     }
-
-    PMinit();
-    provider->joinPMtree(this);
-    registerPowerDriver(this, PMPowerStates, kIOPMNumberPowerStates);
         
     new_get_report_buffer = nullptr;
     
@@ -250,21 +246,7 @@ bool VoodooInputSimulatorDevice::start(IOService* provider) {
 
 void VoodooInputSimulatorDevice::stop(IOService* provider) {
     releaseResources();
-    
-    PMstop();
-    
     super::stop(provider);
-}
-
-IOReturn VoodooInputSimulatorDevice::setPowerState(unsigned long whichState, IOService* whatDevice) {
-    if (whatDevice != this)
-        return kIOReturnInvalid;
-    if (whichState == 0) {
-        // ready_for_reports = false;
-    } else {
-        // ready_for_reports = true;
-    }
-    return kIOPMAckImplied;
 }
 
 void VoodooInputSimulatorDevice::releaseResources() {

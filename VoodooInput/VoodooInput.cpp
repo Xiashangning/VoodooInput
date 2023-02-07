@@ -10,7 +10,6 @@
 #include "VoodooInputMultitouch/VoodooInputMessages.h"
 #include "VoodooInputSimulator/VoodooInputActuatorDevice.hpp"
 #include "VoodooInputSimulator/VoodooInputSimulatorDevice.hpp"
-#include "Trackpoint/TrackpointDevice.hpp"
 
 #define super IOService
 OSDefineMetaClassAndStructors(VoodooInput, IOService);
@@ -31,13 +30,11 @@ bool VoodooInput::start(IOService *provider) {
     // Allocate the simulator and actuator devices
     simulator = OSTypeAlloc(VoodooInputSimulatorDevice);
     actuator = OSTypeAlloc(VoodooInputActuatorDevice);
-    trackpoint = OSTypeAlloc(TrackpointDevice);
     
-    if (!simulator || !actuator || !trackpoint) {
-        IOLog("VoodooInput could not alloc simulator, actuator or trackpoint!\n");
+    if (!simulator || !actuator) {
+        IOLog("VoodooInput could not alloc simulator or actuator!\n");
         OSSafeReleaseNULL(simulator);
         OSSafeReleaseNULL(actuator);
-        OSSafeReleaseNULL(trackpoint);
         return false;
     }
     
@@ -63,18 +60,6 @@ bool VoodooInput::start(IOService *provider) {
         goto exit;
     }
     
-    // Initialize trackpoint device
-    if (!trackpoint->init(NULL) || !trackpoint->attach(this)) {
-        IOLog("VoodooInput could not init or attach trackpoint!\n");
-        goto exit;
-    }
-    else if (!trackpoint->start(this)) {
-        IOLog("VoodooInput could not start trackpoint!\n");
-        trackpoint->detach(this);
-        goto exit;
-    }
-    trackpoint->registerService();
-    
     setProperty(VOODOO_INPUT_IDENTIFIER, kOSBooleanTrue);
     
     if (!parentProvider->open(this)) {
@@ -89,9 +74,8 @@ exit:
 }
 
 bool VoodooInput::willTerminate(IOService* provider, IOOptionBits options) {
-    if (parentProvider->isOpen(this)) {
+    if (parentProvider->isOpen(this))
         parentProvider->close(this);
-    }
 
     return super::willTerminate(provider, options);
 }
@@ -107,12 +91,6 @@ void VoodooInput::stop(IOService *provider) {
         actuator->stop(this);
         actuator->detach(this);
         OSSafeReleaseNULL(actuator);
-    }
-    
-    if (trackpoint) {
-        trackpoint->stop(this);
-        trackpoint->detach(this);
-        OSSafeReleaseNULL(trackpoint);
     }
     
     super::stop(provider);
@@ -177,21 +155,6 @@ IOReturn VoodooInput::message(UInt32 type, IOService *provider, void *argument) 
         case kIOMessageVoodooInputUpdatePropertiesNotification:
             updateProperties();
             break;
-            
-        case kIOMessageVoodooTrackpointRelativePointer: {
-            if (trackpoint) {
-                const RelativePointerEvent& event = *(RelativePointerEvent*)argument;
-                trackpoint->updateRelativePointer(event.dx, event.dy, event.buttons, event.timestamp);
-            }
-            break;
-        }
-        case kIOMessageVoodooTrackpointScrollWheel: {
-            if (trackpoint) {
-                const ScrollWheelEvent& event = *(ScrollWheelEvent*)argument;
-                trackpoint->updateScrollwheel(event.deltaAxis1, event.deltaAxis2, event.deltaAxis3, event.timestamp);
-            }
-            break;
-        }
     }
 
     return super::message(type, provider, argument);
